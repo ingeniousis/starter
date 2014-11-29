@@ -1,26 +1,26 @@
 {
-    name: "United States",
-    datasetPath: "dataset/usa"
-    datasets: [
+    "name": "United States",
+    "datasetPath": "dataset/usa",
+    "datasets": [
         {
-            name: "Essentials",
-            type: "knowledgepack",
-            description: "This knowledge pack helps you to learn the basic geographical and political facts about each state."
+            "name": "Essentials",
+            "type": "kp",
+            "description": "This knowledge pack helps you to learn the basic geographical and political facts about each state."
         },
         {
-            name: "Booster",
-            type: "knowledgepack",
-            description: "This knowledge pack helps you to learn some interesting, historical and fun facts about each state."
+            "name": "Booster",
+            "type": "kp",
+            "description": "This knowledge pack helps you to learn some interesting, historical and fun facts about each state."
         },
         {
-            name: "Bull's Eye",
-            type: "game",
-            description: "How accurately you can locate the states on the map? This game measures your confidence"
+            "name": "Bull's Eye",
+            "type": "game",
+            "description": "How accurately you can locate the states on the map? This game measures your confidence"
         },
         {
-            name: "This is Sparta",
-            type: "game",
-            description: "This game is a fun way to learn about places. Some questions will be asked about places and you need to answer them by identifying the place on the map"
+            "name": "This is Sparta",
+            "type": "game",
+            "description": "This game is a fun way to learn about places. Questions will be asked realted to places and you need to answer them by identifying the place on the map"
         }
     ]
 }

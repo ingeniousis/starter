@@ -1,0 +1,14 @@
+<ion-view title="{{settings.name}}">
+    <ion-content>
+        <div ng-repeat="dataset in settings.datasets">
+            <div class="card" ui-sref="app.home">
+                <div class="item item-divider">
+                    <h3>{{dataset.name}}</h2>
+                </div>
+                <div class="item item-text-wrap">
+                    <p>{{dataset.description}}</p>
+                </div>
+            </div>
+        </div>        
+    </ion-content>
+</ion-view>

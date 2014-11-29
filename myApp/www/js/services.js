@@ -1,12 +1,12 @@
+'use strict';
 angular.module('starter.services', [])
 
-.factory('ConfigService', function ($http) {
-    return {
-
-        getAreaSettings: function (country) {
-            return $http.get('/data');
+.factory('ConfigService', ['$http',
+    function ($http) {
+        return {
+            getAreaSettings: function (country, callback) {
+                return $http.get(String.format('/data/{0}-settings.json', country)).then(callback);
+            }
 
         }
-
-    }
-});
+}]);
