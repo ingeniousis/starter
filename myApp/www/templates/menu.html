@@ -1,6 +1,6 @@
 <ion-side-menus>
     <ion-side-menu-content>
-        <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+        <ion-nav-bar class="bar-calm nav-title-slide-ios7">
             <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
         </ion-nav-bar>
         <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
@@ -9,28 +9,30 @@
     <ion-side-menu side="left" width="80" expose-aside-when="large">
         <ion-content>
             <ion-list>
-                <ion-item nav-clear menu-close href="#/app/home">
-                    <span class="icon-home icon-2x"></span>
+                <ion-item nav-clear ui-sref-active="menu-selected">
+                    <div ui-sref="app.home">
+                        <span class="icon-home icon-2x"></span>
+                    </div>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/area/usa">
+                <ion-item nav-clear href="#/app/area/usa">
                     <span class="icon-america-icon icon-3x"></span>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/area/canada">
+                <ion-item nav-clear href="#/app/area/canada">
                     <span class="icon-canada-icon icon-3x"></span>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/area/africa">
+                <ion-item nav-clear href="#/app/area/africa">
                     <span class="icon-africa-icon icon-3x"></span>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/area/europe">
+                <ion-item nav-clear href="#/app/area/europe">
                     <span class="icon-europe-icon icon-3x"></span>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/area/south-america">
+                <ion-item nav-clear href="#/app/area/south-america">
                     <span class="icon-south-america-icon icon-3x"></span>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/area/asia">
+                <ion-item nav-clear href="#/app/area/asia">
                     <span class="icon-Asia-icon icon-3x"></span>
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/settings">
+                <ion-item nav-clear href="#/app/settings">
                     <span class="icon-cog icon-2x"></span>
                 </ion-item>
             </ion-list>
