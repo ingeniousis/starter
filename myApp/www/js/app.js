@@ -54,8 +54,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         })
 
-        .state('app.area.kp', {
-            url: "/kp/:packId",
+        .state('app.kp', {
+            url: "/kp/:areaId/:packId",
             views: {
                 'menuContent': {
                     templateUrl: "templates/knowledge-pack.html",
@@ -64,8 +64,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         })
 
-        .state('app.area.gp', {
-            url: "/gp/:packId",
+        .state('app.gp', {
+            url: "/gp/:areaId/:packId",
             views: {
                 'menuContent': {
                     templateUrl: "templates/game-pack.html",

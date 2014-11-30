@@ -1,7 +1,7 @@
 {
     "name": "United States",
-    "datasetPath": "dataset/usa",
-    "datasets": [
+    "packsPath": "packs/usa",
+    "packs": [
         {
             "name": "Essentials",
             "type": "kp",
@@ -14,12 +14,12 @@
         },
         {
             "name": "Bull's Eye",
-            "type": "game",
+            "type": "gp",
             "description": "How accurately you can locate the states on the map? This game measures your confidence"
         },
         {
             "name": "This is Sparta",
-            "type": "game",
+            "type": "gp",
             "description": "This game is a fun way to learn about places. Questions will be asked realted to places and you need to answer them by identifying the place on the map"
         }
     ]
