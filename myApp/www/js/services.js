@@ -5,7 +5,7 @@ angular.module('starter.services', [])
     function ($http) {
         return {
             getAreaSettings: function (country, callback) {
-                return $http.get(String.format('/data/{0}-settings.json', country)).then(callback);
+                return $http.get(String.format('data/{0}-settings.json', country)).then(callback);
             }
         }
 }])
