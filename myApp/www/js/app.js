@@ -25,12 +25,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
+
         $stateProvider
 
         .state('app', {
             url: "/app",
             abstract: true,
-            templateUrl: "templates/menu.html",
+            templateUrl: "templates/sidemenu.html",
             controller: 'AppCtrl'
         })
 
@@ -46,28 +47,38 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
         .state('app.area', {
             url: "/area/:areaId",
+            abstract: true,
             views: {
                 'menuContent': {
-                    templateUrl: "templates/area-home.html",
-                    controller: 'AreaCtrl'
+                    templateUrl: "templates/area.html"
                 }
             }
         })
 
-        .state('app.kp', {
-            url: "/kp/:areaId/:packId",
+        .state('app.area.index', {
+            url: "",
             views: {
-                'menuContent': {
+                'areaContent': {
+                    templateUrl: "templates/area-home.html",
+                    controller: 'AreaHomeCtrl'
+                }
+            }
+        })
+
+        .state('app.area.kp', {
+            url: "/kp/:packId",
+            views: {
+                'areaContent': {
                     templateUrl: "templates/knowledge-pack.html",
                     controller: 'KnowledgePackCtrl'
                 }
             }
         })
 
-        .state('app.gp', {
-            url: "/gp/:areaId/:packId",
+        .state('app.area.gp', {
+            url: "/gp/:packId",
             views: {
-                'menuContent': {
+                'areaContent': {
                     templateUrl: "templates/game-pack.html",
                     controller: 'GamePackCtrl'
                 }
@@ -83,6 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 }
             }
         });
-        // if none of the above states are matched, use this as the fallback
+
+        // if none of the above states are matched, use this as the fallback        
         $urlRouterProvider.otherwise('/app/home');
 }]);

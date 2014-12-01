@@ -2,13 +2,25 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', ['$scope',
-    function ($scope) {}])
+.controller('AppCtrl', ['$scope', '$state',
+    function ($scope, $state) {
+        $scope.getMenuItemClass = function (state, areaId) {
+            if ($state.current.name.search(state) === 0) {
+                if (areaId === null) {
+                    return 'menu-selected';
+                }
+
+                if ($state.$current.locals.globals.$stateParams.areaId === areaId) {
+                    return 'menu-selected';
+                }
+            }
+        }
+}])
 
 .controller('HomeCtrl', ['$scope',
     function ($scope) {}])
 
-.controller('AreaCtrl', ['$scope', '$stateParams', 'ConfigService', 'UtilityService',
+.controller('AreaHomeCtrl', ['$scope', '$stateParams', 'ConfigService', 'UtilityService',
     function ($scope, $stateParams, ConfigService, UtilityService) {
         $scope.id = $stateParams.areaId;
         $scope.UtilityService = UtilityService;

@@ -3,7 +3,8 @@
 
         <div class="col col-20">
             <div class="row">
-                <span class="icon-library icon-1x calm"></span>
+                <span ng-if="pack.type == 'kp'" class="icon-library icon-1x calm"></span>
+                <span ng-if="pack.type == 'gp'" class="icon-lab icon-1x calm"></span>
                 <h3 class="calm padding-left">{{pack.name}}</h3>
             </div>
         </div>
