@@ -134,5 +134,6 @@
     padding: 0px;
 }
 .menu-selected {
-    background-color: #ddd;
+    background-color: #777;
+    color: #fff;
 }
