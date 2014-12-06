@@ -8,24 +8,21 @@ var simplemaps_usmap_mapdata = {
         border_color: '#ffffff',
         pop_ups: 'off', //on_click, on_hover, or detect
 
-        //State defaults
-        state_description: 'State description',
+        //State defaults        
         state_color: '#88A4BC',
         state_hover_color: '#3B729F',
-        state_url: 'http://simplemaps.com',
+        state_url: '',
         border_size: 1.5,
         all_states_inactive: 'no',
         all_states_zoomable: 'no',
 
-        //Location defaults
-        location_description: 'Location description',
+        //Location defaults        
         location_color: '#FF0067',
         location_opacity: .8,
         location_hover_opacity: 1,
         location_url: '',
         location_size: 25,
-        location_type: 'square', // circle, square, image
-        location_image_source: 'frog.png', //name of image in the map_images folder		
+        location_type: 'square', // circle, square, image        
         location_border_color: '#FFFFFF',
         location_border: 2,
         location_hover_border: 2.5,
@@ -37,7 +34,7 @@ var simplemaps_usmap_mapdata = {
         label_hover_color: '#d5ddec',
         label_size: 22,
         label_font: 'Arial',
-        hide_labels: 'no',
+        hide_labels: 'yes',
         hide_eastern_labels: 'no',
 
         //Zoom settings
@@ -52,23 +49,12 @@ var simplemaps_usmap_mapdata = {
         region_hover_opacity: .6,
         zoom_out_incrementally: 'yes', // if no, map will zoom all the way out on click
         zoom_percentage: .99,
-        zoom_time: .5, //time to zoom between regions in seconds
-
-        //Popup settings
-        popup_color: 'white',
-        popup_opacity: .9,
-        popup_shadow: 1,
-        popup_corners: 5,
-        popup_font: '12px/1.5 Verdana, Arial, Helvetica, sans-serif',
-        popup_nocss: 'no', //use your own css	
+        zoom_time: 2, //time to zoom between regions in seconds        
 
         //Advanced settings
-        div: 'map',
-        auto_load: 'yes',
-        url_new_tab: 'no',
-        images_directory: 'default', //e.g. 'map_images/'
-        fade_time: .1, //time to fade out		
-        link_text: '(Link)' //Text mobile browsers will see for links	
+        div: 'usmap',
+        auto_load: 'no',
+        fade_time: .1 //time to fade out		        
 
     },
 
@@ -443,7 +429,6 @@ var simplemaps_usmap_mapdata = {
         },
         "VI": {
             name: 'Virgin Islands',
-            image_source: 'x.png',
             description: 'default',
             color: 'default',
             hover_color: 'default',
