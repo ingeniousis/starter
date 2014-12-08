@@ -2,8 +2,8 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', ['$scope', '$state',
-    function ($scope, $state) {
+.controller('AppCtrl', ['$scope', '$state', '$ionicLoading',
+    function ($scope, $state, $ionicLoading) {
         $scope.getMenuItemClass = function (state, areaId) {
             if ($state.current.name.search(state) === 0) {
                 if (areaId === null) {
@@ -15,6 +15,16 @@ angular.module('starter.controllers', [])
                 }
             }
         }
+
+        $scope.showLoading = function () {
+            $ionicLoading.show({
+                template: 'Loading...'
+            });
+        };
+
+        $scope.hideLoading = function () {
+            $ionicLoading.hide();
+        };
 }])
 
 .controller('HomeCtrl', ['$scope',
@@ -24,21 +34,50 @@ angular.module('starter.controllers', [])
     function ($scope, $stateParams, ConfigService, UtilityService) {
         $scope.id = $stateParams.areaId;
         $scope.UtilityService = UtilityService;
-        ConfigService.getAreaSettings($scope.id, function (response) {
-            $scope.settings = response.data;
+        ConfigService.GetAreaSettings($scope.id, function (data) {
+            $scope.settings = data;
         });
+
+        $scope.showLoading = function () {
+            $ionicLoading.show({
+                template: 'Loading...'
+            });
+        };
+
+        $scope.hideLoading = function () {
+            $ionicLoading.hide();
+        };
 }])
 
-.controller('KnowledgePackCtrl', ['$scope', '$stateParams',
-    function ($scope, $stateParams) {
-        $scope.areaId = $stateParams.areaId;
-        $scope.packId = $stateParams.packId;
-    }])
+.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'ConfigService',
+    function ($scope, $stateParams, $timeout, ConfigService) {
+        $scope.$parent.showLoading();
 
-.controller('GamePackCtrl', ['$scope', '$stateParams',
-    function ($scope, $stateParams) {
         $scope.areaId = $stateParams.areaId;
-        $scope.packId = $stateParams.packId;
+        ConfigService.GetAreaSettings($stateParams.areaId, function (data) {
+            $scope.area = data;
+            $scope.pack = ConfigService.GetPackSetting($scope.area, $stateParams.packId);
+            $timeout(InitializeMap, 0);
+        });
+
+        function InitializeMap() {
+            simplemaps_usmap.hooks.click_state = function (id) {
+                console.log('Region clicked: ' + id);
+            };
+            simplemaps_usmap.hooks.complete = function () {
+                $scope.$parent.hideLoading();
+            };
+
+            simplemaps_usmap.load();
+        }
+}])
+
+.controller('GamePackCtrl', ['$scope', '$stateParams', 'ConfigService',
+    function ($scope, $stateParams, ConfigService) {
+        ConfigService.GetAreaSettings($stateParams.areaId, function (data) {
+            $scope.area = data;
+            $scope.pack = ConfigService.GetPackSetting($scope.area, $stateParams.packId);
+        });
     }])
 
 .controller('SettingsCtrl', ['$scope',

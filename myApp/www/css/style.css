@@ -134,6 +134,9 @@
     padding: 0px;
 }
 .menu-selected {
-    background-color: #777;
-    color: #fff;
+    /* background-color: #43cee6; */
+    color: #43cee6;
+}
+div#usmap_trial {
+    display: none;
 }
