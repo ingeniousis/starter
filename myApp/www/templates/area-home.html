@@ -1,7 +1,7 @@
 <ion-view title="{{settings.name}}">
     <ion-content>
         <div ng-repeat="pack in settings.packs">
-            <div class="card" ng-if="pack.type == 'kp'" ui-sref="app.area.kp({areaId:id, packId:UtilityService.GetPackId(pack.name)})" ng-include="'templates/summary-pack.html'"></div>
+            <div class="card" ng-if="pack.type == 'kp'" ng-click="onPackSelected(pack)" ng-include="'templates/summary-pack.html'"></div>
             <div class="card" ng-if="pack.type == 'gp'" ui-sref="app.area.gp({areaId:id, packId:UtilityService.GetPackId(pack.name)})" ng-include="'templates/summary-pack.html'"></div>
         </div>
     </ion-content>
