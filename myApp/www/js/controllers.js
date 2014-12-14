@@ -14,6 +14,8 @@ angular.module('starter.controllers', [])
                     return 'menu-selected';
                 }
             }
+
+            return 'stable-bg';
         }
 
         $scope.showLoading = function () {
@@ -36,18 +38,24 @@ angular.module('starter.controllers', [])
         $scope.UtilityService = UtilityService;
         ConfigService.GetAreaSettings($scope.id, function (data) {
             $scope.settings = data;
+            $scope.settings.packs.forEach(function (pack) {
+                pack.selected = false;
+            });
         });
 
         $scope.onPackSelected = function (pack) {
             $scope.$parent.showLoading();
+            pack.selected = true;
             var params = {
                 areaId: $scope.id,
                 packId: UtilityService.GetPackId(pack.name)
             };
 
+            var state = pack.type == 'kp' ? 'app.area.kp' : 'app.area.gp';
+
             $timeout(function () {
-                $state.go('app.area.kp', params);
-            }, 10);
+                $state.go(state, params);
+            }, 0);
         };
 }])
 
@@ -73,7 +81,7 @@ angular.module('starter.controllers', [])
             // Timeout for the nav-view animation to complete
             $timeout(function () {
                 simplemaps_usmap.load();
-            }, 0);
+            }, 10);
         }
 }])
 
@@ -82,6 +90,7 @@ angular.module('starter.controllers', [])
         ConfigService.GetAreaSettings($stateParams.areaId, function (data) {
             $scope.area = data;
             $scope.pack = ConfigService.GetPackSetting($scope.area, $stateParams.packId);
+            $scope.$parent.hideLoading();
         });
     }])
 

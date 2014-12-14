@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         })
 
-        .state('app.area.index', {
+        .state('app.area.home', {
             url: "",
             views: {
                 'areaContent': {

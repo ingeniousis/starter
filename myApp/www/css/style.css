@@ -130,12 +130,18 @@
 }
 /* Other Styles*/
 
+div.list {
+    padding-top: 0px;
+}
 .summary.item {
     padding: 0px;
 }
+.selected {
+    background-color: #f8f8f8;
+}
 .menu-selected {
-    /* background-color: #43cee6; */
-    color: #43cee6;
+    background-color: #b2b2b2;
+    color: #fff;
 }
 div#usmap_trial {
     display: none;

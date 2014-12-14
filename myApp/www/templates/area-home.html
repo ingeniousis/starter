@@ -1,8 +1,25 @@
 <ion-view title="{{settings.name}}">
     <ion-content>
         <div ng-repeat="pack in settings.packs">
-            <div class="card" ng-if="pack.type == 'kp'" ng-click="onPackSelected(pack)" ng-include="'templates/summary-pack.html'"></div>
-            <div class="card" ng-if="pack.type == 'gp'" ui-sref="app.area.gp({areaId:id, packId:UtilityService.GetPackId(pack.name)})" ng-include="'templates/summary-pack.html'"></div>
+            <div class="card" ng-click="onPackSelected(pack)">
+                <div ng-class="pack.selected?'summary item selected':'summary item'">
+                    <div class="row">
+                        <div class="col col-20">
+                            <div class="row">
+                                <span ng-if="pack.type == 'kp'" class="icon-library icon-1x calm"></span>
+                                <span ng-if="pack.type == 'gp'" class="icon-lab icon-1x calm"></span>
+                                <h2 class="calm padding-left">{{pack.name}}</h2>
+                            </div>
+                        </div>
+                        <div class="col col-60 item-text-wrap">
+                            {{pack.description}}
+                        </div>
+
+                        <div class="col col-20">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>
