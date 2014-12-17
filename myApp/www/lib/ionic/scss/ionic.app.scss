@@ -1,0 +1,9 @@
+// your variable changes can go here
+$calm:#006666 !default;
+ $button-calm-bg:#f8f8f8 !default;
+ $button-calm-text:$calm !default;
+ $bar-calm-border:#dddddd !default;
+@import "www/lib/ionic/scss/ionic";
+// your slick styles can go here...
+// when Sass processes, both Ionic's Sass and your Sass will combine
+// into one file and saved in your app's directory as www/css/app.css

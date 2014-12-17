@@ -22,7 +22,7 @@ function SetGlobalSettings(mapData) {
 
         //State defaults        
         state_color: '#b2b2b2',
-        state_hover_color: '#444444',
+        state_hover_color: '#7c7c7c',
 
         state_url: '',
         border_size: 1.5,
