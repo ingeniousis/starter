@@ -21,8 +21,8 @@ function SetGlobalSettings(mapData) {
         pop_ups: 'off',
 
         //State defaults        
-        state_color: '#b2b2b2',
-        state_hover_color: '#7c7c7c',
+        state_color: '#99b9b9',
+        state_hover_color: '#4c8585',
 
         state_url: '',
         border_size: 1.5,

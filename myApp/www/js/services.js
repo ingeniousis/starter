@@ -10,7 +10,7 @@ angular.module('starter.services', [])
                 if (areaSettings[areaId] !== undefined) {
                     callback(areaSettings[areaId]);
                 } else {
-                    $http.get(String.format('data/{0}-settings.json', areaId)).then(function (response) {
+                    $http.get(String.format('data/settings/{0}-settings.json', areaId)).then(function (response) {
                         var areaSetting = response.data;
                         areaSetting.packs.forEach(function (pack) {
                             pack.id = UtilityService.GetPackId(pack.name);

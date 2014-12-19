@@ -1,0 +1,168 @@
+{
+    "HI": {
+        "name": "Hawaii"
+    },
+    "AK": {
+        "name": "Alaska"
+    },
+    "FL": {
+        "name": "Florida"
+    },
+    "NH": {
+        "name": "New Hampshire"
+    },
+    "VT": {
+        "name": "Vermont"
+    },
+    "ME": {
+        "name": "Maine"
+    },
+    "RI": {
+        "name": "Rhode Island"
+    },
+    "NY": {
+        "name": "New York"
+    },
+    "PA": {
+        "name": "Pennsylvania"
+    },
+    "NJ": {
+        "name": "New Jersey"
+    },
+    "DE": {
+        "name": "Delaware"
+    },
+    "MD": {
+        "name": "Maryland"
+    },
+    "VA": {
+        "name": "Virginia"
+    },
+    "WV": {
+        "name": "West Virginia"
+    },
+    "OH": {
+        "name": "Ohio"
+    },
+    "IN": {
+        "name": "Indiana"
+    },
+    "IL": {
+        "name": "Illinois"
+    },
+    "CT": {
+        "name": "Connecticut"
+    },
+    "WI": {
+        "name": "Wisconsin"
+    },
+    "NC": {
+        "name": "North Carolina"
+    },
+    "DC": {
+        "name": "District of Columbia"
+    },
+    "MA": {
+        "name": "Massachusetts"
+    },
+    "TN": {
+        "name": "Tennessee"
+    },
+    "AR": {
+        "name": "Arkansas"
+    },
+    "MO": {
+        "name": "Missouri"
+    },
+    "GA": {
+        "name": "Georgia"
+    },
+    "SC": {
+        "name": "South Carolina"
+    },
+    "KY": {
+        "name": "Kentucky"
+    },
+    "AL": {
+        "name": "Alabama"
+    },
+    "LA": {
+        "name": "Louisiana"
+    },
+    "MS": {
+        "name": "Mississippi"
+    },
+    "IA": {
+        "name": "Iowa"
+    },
+    "MN": {
+        "name": "Minnesota"
+    },
+    "OK": {
+        "name": "Oklahoma"
+    },
+    "TX": {
+        "name": "Texas"
+    },
+    "NM": {
+        "name": "New Mexico"
+    },
+    "KS": {
+        "name": "Kansas"
+    },
+    "NE": {
+        "name": "Nebraska"
+    },
+    "SD": {
+        "name": "South Dakota"
+    },
+    "ND": {
+        "name": "North Dakota"
+    },
+    "WY": {
+        "name": "Wyoming"
+    },
+    "MT": {
+        "name": "Montana"
+    },
+    "CO": {
+        "name": "Colorado"
+    },
+    "UT": {
+        "name": "Utah"
+    },
+    "AZ": {
+        "name": "Arizona"
+    },
+    "NV": {
+        "name": "Nevada"
+    },
+    "OR": {
+        "name": "Oregon"
+    },
+    "WA": {
+        "name": "Washington"
+    },
+    "CA": {
+        "name": "California"
+    },
+    "MI": {
+        "name": "Michigan"
+    },
+    "ID": {
+        "name": "Idaho"
+    },
+    // Territories
+    "GU": {
+        "name": "Guam"
+    },
+    "VI": {
+        "name": "Virgin Islands"
+    },
+    "PR": {
+        "name": "Puerto Rico"
+    },
+    "MP": {
+        "name": "Northern Mariana Islands"
+    }
+}
