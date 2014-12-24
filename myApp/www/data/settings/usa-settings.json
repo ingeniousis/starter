@@ -5,12 +5,14 @@
         {
             "name": "Essentials",
             "type": "kp",
-            "description": "This knowledge pack helps you to learn the basic geographical and political facts about each state."
+            "description": "This knowledge pack helps you to learn the basic geographical and political facts about each state.",
+            "id": "usa-kp-1.1"
         },
         {
             "name": "Booster",
             "type": "kp",
-            "description": "This knowledge pack helps you to learn some interesting, historical and fun facts about each state."
+            "description": "This knowledge pack helps you to learn some interesting, historical and fun facts about each state.",
+            "id": "usa-kp-1.1"
         },
         {
             "name": "Bull's Eye",

@@ -62,6 +62,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     templateUrl: "templates/area-home.html",
                     controller: 'AreaHomeCtrl'
                 }
+            },
+            resolve: {
+                areaSetting: function ($stateParams, FileStorageService) {
+                    return FileStorageService.GetAreaSetting($stateParams.areaId);
+                }
             }
         })
 
@@ -72,6 +77,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     templateUrl: "templates/knowledge-pack.html",
                     controller: 'KnowledgePackCtrl'
                 }
+            },
+            resolve: {
+                areaSetting: function ($stateParams, FileStorageService) {
+                    return FileStorageService.GetAreaSetting($stateParams.areaId);
+                },
+                packSetting: function (areaSetting, $stateParams, UtilityService) {
+                    return UtilityService.GetPackSetting(areaSetting, $stateParams.packId);
+                },
+                packData: function ($stateParams, FileStorageService) {
+                    return FileStorageService.GetPackData($stateParams.areaId, $stateParams.packId);
+                }
             }
         })
 
@@ -81,6 +97,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 'areaContent': {
                     templateUrl: "templates/game-pack.html",
                     controller: 'GamePackCtrl'
+                }
+            },
+            resolve: {
+                areaSetting: function ($stateParams, FileStorageService) {
+                    return FileStorageService.GetAreaSetting($stateParams.areaId);
+                },
+                packSetting: function (areaSetting, $stateParams, UtilityService) {
+                    return UtilityService.GetPackSetting(areaSetting, $stateParams.packId);
+                },
+                packData: function ($stateParams, FileStorageService) {
+                    return FileStorageService.GetPackData($stateParams.areaId, $stateParams.packId);
                 }
             }
         })

@@ -1,42 +1,73 @@
 'use strict';
 angular.module('starter.services', [])
 
-.factory('ConfigService', ['$http', 'UtilityService',
+.factory('FileStorageService', ['$http', '$q', 'UtilityService',
 
-    function ($http, UtilityService) {
+    function ($http, $q, UtilityService) {
         var areaSettings = {};
+        var packData = {};
+
         return {
-            GetAreaSettings: function (areaId, callback) {
+            GetAreaSetting: function (areaId) {
+                var deferred = $q.defer();
                 if (areaSettings[areaId] !== undefined) {
-                    callback(areaSettings[areaId]);
+                    deferred.resolve(areaSettings[areaId]);
                 } else {
                     $http.get(String.format('data/settings/{0}-settings.json', areaId)).then(function (response) {
                         var areaSetting = response.data;
-                        areaSetting.packs.forEach(function (pack) {
-                            pack.id = UtilityService.GetPackId(pack.name);
-                        });
-
                         areaSettings[areaId] = areaSetting;
-                        callback(areaSettings[areaId]);
+                        deferred.resolve(areaSetting);
                     });
                 }
+
+                return deferred.promise;
             },
 
-            GetPackSetting: function (areaSetting, packId) {
-                for (var index in areaSetting.packs) {
-                    var pack = areaSetting.packs[index];
-                    if (pack.id === packId) {
-                        return pack;
-                    }
+            GetPackData: function (areaId, packId) {
+                var deferred = $q.defer();
+                if (packData[packId] !== undefined) {
+                    deferred.resolve(packData[packId]);
+                } else {
+                    $http.get(String.format('data/packs/{0}/{1}.json', areaId, packId)).then(function (response) {
+                            var packData = response.data;
+                            packData[packId] = packData;
+                            deferred.resolve(packData);
+                        },
+                        function (response) {
+                            deferred.resolve({});
+                        });
                 }
+
+                return deferred.promise;
             }
         }
     }])
 
+.factory('MapService', function () {
+
+    return {
+        GetMap: function (areaId) {
+            switch (areaId) {
+            case 'usa':
+                return simplemaps_usmap;
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+})
+
 .factory('UtilityService', function () {
     return {
-        GetPackId: function (packName) {
-            return packName.replace(/[\s\']/g, '-');
+        GetPackSetting: function (areaSetting, packId) {
+            for (var index in areaSetting.packs) {
+                var pack = areaSetting.packs[index];
+                if (pack.id === packId) {
+                    return pack;
+                }
+            }
         }
     }
 });

@@ -4,7 +4,7 @@ var simplemaps_canadamap_mapdata = {};
 var simplemaps_worldmap_mapdata = {};
 
 SetGlobalSettings(simplemaps_usmap_mapdata);
-simplemaps_usmap_mapdata.main_settings.div = 'usmap';
+simplemaps_usmap_mapdata.main_settings.div = 'map';
 simplemaps_usmap_mapdata.state_specific = {};
 
 SetGlobalSettings(simplemaps_canadamap_mapdata);

@@ -1,6 +1,6 @@
-<ion-view title="{{settings.name}}">
+<ion-view title="{{areaSetting.name}}">
     <ion-content>
-        <div ng-repeat="pack in settings.packs">
+        <div ng-repeat="pack in areaSetting.packs">
             <div class="card" ng-click="onPackSelected(pack)">
                 <div ng-class="pack.selected?'summary item selected':'summary item'">
                     <div class="row">

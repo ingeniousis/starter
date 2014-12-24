@@ -1,6 +1,6 @@
-<ion-view title="{{area.name}} - {{pack.name}}">
+<ion-view title="{{areaSetting.name}} - {{packSetting.name}}">
     <ion-content>
-        <div data-tap-disabled="true" ng-if="areaId === 'usa'" id="usmap" style="width: 90%"></div>
+        <div maptype='usa' data-tap-disabled="true" id="map" ng-if="areaId === 'usa'" style="width: 95%"></div>
         <div></div>
     </ion-content>
 </ion-view>

@@ -27,20 +27,20 @@ angular.module('starter.controllers', [])
         $scope.hideLoading = function () {
             $ionicLoading.hide();
         };
+
+        $scope.showLoading();
+        $scope.hideLoading();
 }])
 
 .controller('HomeCtrl', ['$scope',
     function ($scope) {}])
 
-.controller('AreaHomeCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'ConfigService', 'UtilityService',
-    function ($scope, $stateParams, $state, $timeout, ConfigService, UtilityService) {
+.controller('AreaHomeCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'areaSetting',
+    function ($scope, $stateParams, $state, $timeout, areaSetting) {
         $scope.id = $stateParams.areaId;
-        $scope.UtilityService = UtilityService;
-        ConfigService.GetAreaSettings($scope.id, function (data) {
-            $scope.settings = data;
-            $scope.settings.packs.forEach(function (pack) {
-                pack.selected = false;
-            });
+        $scope.areaSetting = areaSetting;
+        $scope.areaSetting.packs.forEach(function (pack) {
+            pack.selected = false;
         });
 
         $scope.onPackSelected = function (pack) {
@@ -48,51 +48,52 @@ angular.module('starter.controllers', [])
             pack.selected = true;
             var params = {
                 areaId: $scope.id,
-                packId: UtilityService.GetPackId(pack.name)
+                packId: pack.id
             };
 
             var state = pack.type == 'kp' ? 'app.area.kp' : 'app.area.gp';
 
             $timeout(function () {
                 $state.go(state, params);
-            }, 0);
+            }, 50);
         };
 }])
 
-.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'ConfigService',
-    function ($scope, $stateParams, $timeout, ConfigService) {
+.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData) {
+
         $scope.areaId = $stateParams.areaId;
-        ConfigService.GetAreaSettings($stateParams.areaId, function (data) {
-            $scope.area = data;
-            $scope.pack = ConfigService.GetPackSetting($scope.area, $stateParams.packId);
+        $scope.areaSetting = areaSetting;
+        $scope.packSetting = packSetting;
 
-            // Timeout to load the DOM
-            $timeout(InitializeMap, 0);
-        });
+        var map = MapService.GetMap($scope.areaId);
 
-        function InitializeMap() {
-            simplemaps_usmap.hooks.click_state = function (id) {
-                console.log('Region clicked: ' + id);
-            };
-            simplemaps_usmap.hooks.complete = function () {
-                $scope.$parent.hideLoading();
-            };
+        map.hooks.click_state = function (id) {
+            console.log('Region clicked: ' + id);
+        };
 
-            // Timeout for the nav-view animation to complete
-            $timeout(function () {
-                simplemaps_usmap.load();
-            }, 10);
-        }
+        map.hooks.complete = function () {
+            $scope.$parent.hideLoading();
+        };
 }])
 
-.controller('GamePackCtrl', ['$scope', '$stateParams', 'ConfigService',
-    function ($scope, $stateParams, ConfigService) {
-        ConfigService.GetAreaSettings($stateParams.areaId, function (data) {
-            $scope.area = data;
-            $scope.pack = ConfigService.GetPackSetting($scope.area, $stateParams.packId);
-            $scope.$parent.hideLoading();
-        });
+.controller('GamePackCtrl', ['$scope', '$stateParams', 'areaSetting', 'packSetting', 'packData',
+    function ($scope, $stateParams, areaSetting, packSetting, packData) {
+        $scope.areaSetting = areaSetting;
+        $scope.packSetting = packSetting;
+        $scope.$parent.hideLoading();
     }])
 
 .controller('SettingsCtrl', ['$scope',
-    function ($scope) {}]);
+    function ($scope) {}])
+
+.directive('maptype', ['MapService',
+    function (MapService) {
+        return {
+            restrict: 'A',
+            link: function ($scope, $element, attr) {
+                var map = MapService.GetMap(attr.maptype);
+                map.load();
+            }
+        }
+}]);
