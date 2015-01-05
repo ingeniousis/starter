@@ -70,6 +70,8 @@ angular.module('starter.controllers', [])
 
         map.hooks.click_state = function (id) {
             console.log('Region clicked: ' + id);
+            $scope.selectedRegionData = packData[id];
+            $scope.$apply();
         };
 
         map.hooks.complete = function () {

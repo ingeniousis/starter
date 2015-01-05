@@ -1,6 +1,35 @@
 <ion-view title="{{areaSetting.name}} - {{packSetting.name}}">
     <ion-content>
-        <div maptype='usa' data-tap-disabled="true" id="map" ng-if="areaId === 'usa'" style="width: 95%"></div>
-        <div></div>
+        <div class="row">
+            <div class="col col-90">
+                <div maptype='usa' data-tap-disabled="true" id="map" ng-if="areaId === 'usa'" style="width: 110%"></div>
+            </div>
+        </div>
+
+        <div class="row" ng-hide="selectedRegionData === undefined">
+            <div class="col col-33 padding-left">
+                <div class="calm">STATE</div>
+                <div class="calm regionLabel">{{selectedRegionData.Name.toUpperCase()}}</div>
+                <div class="assertive padding-top">CAPITAL</div>
+                <div class="assertive regionCapitalLabel">{{selectedRegionData.Capital.toUpperCase()}}</div>
+            </div>
+            <div class="col col-33 dark">
+                <div>
+                    <div>NICKNAMES</div>
+                    <div ng-repeat="name in selectedRegionData.Nicknames" class="regionInfoLabel"><b>{{name}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-33 dark">
+                <div>
+                    <div>STATEHOOD</div>
+                    <div class="regionInfoLabel"><b>{{selectedRegionData.Statehood}}</b>
+                    </div>
+                    <div class="padding-top">MOTTO</div>
+                    <div class="regionInfoLabel"><b>{{selectedRegionData.Motto}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

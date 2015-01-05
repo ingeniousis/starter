@@ -146,3 +146,12 @@ div.list {
 div#map_trial {
     display: none;
 }
+.regionLabel {
+    font-size: 32px;
+}
+.regionCapitalLabel {
+    font-size: 20px;
+}
+.regionInfoLabel {
+    font-size: 16px;
+}
