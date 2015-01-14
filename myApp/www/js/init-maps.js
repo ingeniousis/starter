@@ -7,6 +7,13 @@ SetGlobalSettings(simplemaps_usmap_mapdata);
 simplemaps_usmap_mapdata.main_settings.div = 'map';
 simplemaps_usmap_mapdata.state_specific = {};
 
+simplemaps_usmap_mapdata.regions = {
+    '0': {
+        name: 'NewEngland',
+        states: ["ME", "NH", "VT", "MA", "CT", "RI", "NY", "NJ", "DE", "MD"]
+    }
+};
+
 SetGlobalSettings(simplemaps_canadamap_mapdata);
 SetGlobalSettings(simplemaps_canadamap_mapdata);
 
@@ -22,7 +29,7 @@ function SetGlobalSettings(mapData) {
 
         //State defaults        
         state_color: '#99b9b9',
-        state_hover_color: '#4c8585',
+        state_hover_color: '#99b9b9',
 
         state_url: '',
         border_size: 1.5,
@@ -47,12 +54,12 @@ function SetGlobalSettings(mapData) {
         arrow_color: '#3B729F',
         arrow_color_border: '#88A4BC',
         initial_back: 'no', //Show back button when zoomed out and do this JavaScript upon click		
-        initial_zoom: -1, //-1 is zoomed out, 0 is for the first continent etc	
+        initial_zoom: '-1', //-1 is zoomed out, 0 is for the first continent etc	
         initial_zoom_solo: 'no', //hide adjacent states when starting map zoomed in
+        zoom_time: '3',
         region_opacity: 1,
         region_hover_opacity: .6,
-        zoom_out_incrementally: 'yes', // if no, map will zoom all the way out on click
-        zoom_percentage: .99,
+        adjacent_opacity: 1,
 
         //Advanced settings        
         auto_load: 'no',

@@ -43,21 +43,47 @@ angular.module('starter.services', [])
         }
     }])
 
-.factory('MapService', function () {
+.factory('MapService', ['$timeout',
+    function ($timeout) {
 
-    return {
-        GetMap: function (areaId) {
-            switch (areaId) {
-            case 'usa':
-                return simplemaps_usmap;
-                break;
+        return {
+            GetMap: function (areaId) {
+                switch (areaId) {
+                case 'usa':
+                    return simplemaps_usmap;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+                }
+            },
+
+            GetMapData: function (areaId) {
+                switch (areaId) {
+                case 'usa':
+                    return simplemaps_usmap_mapdata;
+                    break;
+
+                default:
+                    break;
+                }
+            },
+
+            SelectState: function (stateId) {
+                var className = 'sm_state_' + stateId;
+                $timeout(function () {
+                    document.getElementsByClassName(className)[0].setAttribute('fill', '#4c8585');
+                }, 100);
+            },
+
+            DeSelectState: function (stateId) {
+                var className = 'sm_state_' + stateId;
+                $timeout(function () {
+                    document.getElementsByClassName(className)[0].setAttribute('fill', '#99b9b9');
+                }, 100);
             }
         }
-    }
-})
+}])
 
 .factory('UtilityService', function () {
     return {

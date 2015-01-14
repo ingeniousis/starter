@@ -67,9 +67,18 @@ angular.module('starter.controllers', [])
         $scope.packSetting = packSetting;
 
         var map = MapService.GetMap($scope.areaId);
+        var mapData = MapService.GetMapData($scope.areaId);
+        var selectedStateId;
 
         map.hooks.click_state = function (id) {
-            console.log('Region clicked: ' + id);
+            console.log('State clicked: ' + id);
+            if (selectedStateId !== undefined) {
+                MapService.DeSelectState(selectedStateId)
+            }
+
+            selectedStateId = id;
+            MapService.SelectState(selectedStateId)
+
             $scope.selectedRegionData = packData[id];
             $scope.$apply();
         };
@@ -77,6 +86,34 @@ angular.module('starter.controllers', [])
         map.hooks.complete = function () {
             $scope.$parent.hideLoading();
         };
+
+        map.hooks.zoomable_click_region = function (id) {
+            $scope.regionZoomed = id;
+
+            if (selectedStateId !== undefined) {
+                MapService.DeSelectState(selectedStateId)
+            }
+
+            $scope.selectedRegionData = undefined;
+        };
+
+        map.hooks.back = function () {
+            $scope.regionZoomed = undefined;
+        };
+
+        map.hooks.zooming_complete = function () {
+            $scope.$apply();
+        };
+
+        function init() {
+
+        }
+
+        $scope.$on('$destroy', function () {
+
+        });
+
+        init();
 }])
 
 .controller('GamePackCtrl', ['$scope', '$stateParams', 'areaSetting', 'packSetting', 'packData',
