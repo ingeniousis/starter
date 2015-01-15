@@ -43,6 +43,24 @@ angular.module('starter.services', [])
         }
     }])
 
+.factory('AppData', function () {
+    var appData = {};
+    return {
+        GetStateData: function (key) {
+            var stateData = appData[key];
+            if (stateData === undefined) {
+                return {};
+            }
+
+            return stateData;
+        },
+
+        PutStateData: function (key, data) {
+            appData[key] = data;
+        }
+    }
+})
+
 .factory('MapService', ['$timeout',
     function ($timeout) {
 

@@ -59,8 +59,8 @@ angular.module('starter.controllers', [])
         };
 }])
 
-.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData',
-    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData) {
+.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
 
         $scope.areaId = $stateParams.areaId;
         $scope.areaSetting = areaSetting;
@@ -68,16 +68,15 @@ angular.module('starter.controllers', [])
 
         var map = MapService.GetMap($scope.areaId);
         var mapData = MapService.GetMapData($scope.areaId);
-        var selectedStateId;
 
         map.hooks.click_state = function (id) {
             console.log('State clicked: ' + id);
-            if (selectedStateId !== undefined) {
-                MapService.DeSelectState(selectedStateId)
+            if (stateData.selectedStateId !== undefined) {
+                MapService.DeSelectState(stateData.selectedStateId)
             }
 
-            selectedStateId = id;
-            MapService.SelectState(selectedStateId)
+            stateData.selectedStateId = id;
+            MapService.SelectState(stateData.selectedStateId)
 
             $scope.selectedRegionData = packData[id];
             $scope.$apply();
@@ -85,35 +84,32 @@ angular.module('starter.controllers', [])
 
         map.hooks.complete = function () {
             $scope.$parent.hideLoading();
+
+            if (stateData.selectedStateId !== undefined) {
+                MapService.SelectState(stateData.selectedStateId);
+                $scope.selectedRegionData = packData[stateData.selectedStateId];
+            }
+
+            if (stateData.regionZoomed !== undefined) {
+                map.region_zoom(stateData.regionZoomed);
+            }
         };
 
         map.hooks.zoomable_click_region = function (id) {
-            $scope.regionZoomed = id;
+            stateData.regionZoomed = id;
 
-            if (selectedStateId !== undefined) {
-                MapService.DeSelectState(selectedStateId)
+            if (stateData.selectedStateId !== undefined) {
+                MapService.DeSelectState(stateData.selectedStateId);
+                stateData.selectedStateId = undefined;
             }
 
             $scope.selectedRegionData = undefined;
-        };
-
-        map.hooks.back = function () {
-            $scope.regionZoomed = undefined;
-        };
-
-        map.hooks.zooming_complete = function () {
             $scope.$apply();
         };
 
-        function init() {
-
-        }
-
-        $scope.$on('$destroy', function () {
-
-        });
-
-        init();
+        map.hooks.back = function () {
+            stateData.regionZoomed = undefined;
+        };
 }])
 
 .controller('GamePackCtrl', ['$scope', '$stateParams', 'areaSetting', 'packSetting', 'packData',

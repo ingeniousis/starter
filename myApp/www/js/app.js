@@ -87,7 +87,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 },
                 packData: function ($stateParams, FileStorageService) {
                     return FileStorageService.GetPackData($stateParams.areaId, $stateParams.packId);
+                },
+                stateData: function ($stateParams, AppData) {
+                    var key = String.format('{0}:{1}', $stateParams.areaId, $stateParams.packId);
+                    return AppData.GetStateData(key);;
                 }
+            },
+            onExit: function ($stateParams, AppData, stateData) {
+                var key = String.format('{0}:{1}', $stateParams.areaId, $stateParams.packId);
+                AppData.PutStateData(key, stateData);
             }
         })
 
