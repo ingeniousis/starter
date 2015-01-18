@@ -50,9 +50,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             abstract: true,
             views: {
                 'menuContent': {
-                    templateUrl: "templates/area.html"
+                    templateUrl: "templates/area.html",
+                    controller: 'AreaCtrl'
+                }
+            },
+            resolve: {
+                areaSetting: function ($stateParams, FileStorageService) {
+                    return FileStorageService.GetAreaSetting($stateParams.areaId);
                 }
             }
+
         })
 
         .state('app.area.home', {
@@ -78,25 +85,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     controller: 'KnowledgePackCtrl'
                 }
             },
-            resolve: {
-                areaSetting: function ($stateParams, FileStorageService) {
-                    return FileStorageService.GetAreaSetting($stateParams.areaId);
-                },
-                packSetting: function (areaSetting, $stateParams, UtilityService) {
-                    return UtilityService.GetPackSetting(areaSetting, $stateParams.packId);
-                },
-                packData: function ($stateParams, FileStorageService) {
-                    return FileStorageService.GetPackData($stateParams.areaId, $stateParams.packId);
-                },
-                stateData: function ($stateParams, AppData) {
-                    var key = String.format('{0}:{1}', $stateParams.areaId, $stateParams.packId);
-                    return AppData.GetStateData(key);;
+            resolve: GetResolveData(),
+            onExit: OnStateExit
+        })
+
+        .state('app.area.pp', {
+            url: "/pp/:packId",
+            views: {
+                'areaContent': {
+                    templateUrl: "templates/practice-pack.html",
+                    controller: 'PracticePackCtrl'
                 }
             },
-            onExit: function ($stateParams, AppData, stateData) {
-                var key = String.format('{0}:{1}', $stateParams.areaId, $stateParams.packId);
-                AppData.PutStateData(key, stateData);
-            }
+            resolve: GetResolveData(),
+            onExit: OnStateExit
         })
 
         .state('app.area.gp', {
@@ -107,17 +109,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     controller: 'GamePackCtrl'
                 }
             },
-            resolve: {
-                areaSetting: function ($stateParams, FileStorageService) {
-                    return FileStorageService.GetAreaSetting($stateParams.areaId);
-                },
-                packSetting: function (areaSetting, $stateParams, UtilityService) {
-                    return UtilityService.GetPackSetting(areaSetting, $stateParams.packId);
-                },
-                packData: function ($stateParams, FileStorageService) {
-                    return FileStorageService.GetPackData($stateParams.areaId, $stateParams.packId);
-                }
-            }
+            resolve: GetResolveData(),
+            onExit: OnStateExit
         })
 
         .state('app.settings', {
@@ -133,3 +126,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         // if none of the above states are matched, use this as the fallback        
         $urlRouterProvider.otherwise('/app/home');
 }]);
+
+function GetResolveData() {
+    return {
+        areaSetting: function ($stateParams, FileStorageService) {
+            return FileStorageService.GetAreaSetting($stateParams.areaId);
+        },
+        packSetting: function (areaSetting, $stateParams, UtilityService) {
+            return UtilityService.GetPackSetting(areaSetting, $stateParams.packId);
+        },
+        packData: function ($stateParams, FileStorageService, packSetting) {
+            return FileStorageService.GetPackData($stateParams.areaId, packSetting.data);
+        },
+        stateData: function ($stateParams, AppData) {
+            var key = String.format('{0}:{1}:{2}', this.self.name, $stateParams.areaId, $stateParams.packId);
+            return AppData.GetStateData(key);
+        }
+    }
+}
+
+function OnStateExit($state, AppData, stateData) {
+    var key = String.format('{0}:{1}:{2}', $state.current.name, $state.params.areaId, $state.params.packId);
+    AppData.PutStateData(key, stateData);
+}

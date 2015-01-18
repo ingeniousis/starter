@@ -4,25 +4,30 @@
     "packs": [
         {
             "name": "Essentials",
+            "id": "essentials",
             "type": "kp",
             "description": "This knowledge pack helps you to learn the basic geographical and political facts about each state.",
-            "id": "usa-kp-1.1"
+            "data": "usa-kp-1.1"
         },
         {
             "name": "Booster",
+            "id": "booster",
             "type": "kp",
             "description": "This knowledge pack helps you to learn some interesting, historical and fun facts about each state.",
-            "id": "usa-kp-1.1"
+            "data": "usa-kp-1.1"
         },
         {
             "name": "Bull's Eye",
-            "type": "gp",
-            "description": "How accurately you can locate the states on the map? This game measures your confidence"
+            "id": "bullseye",
+            "type": "pp",
+            "description": "How accurately you can locate the states on the map? This game measures your confidence",
+            "data": "usa-kp-1.1"
         },
         {
-            "name": "This is Sparta",
+            "name": "Spartan Race",
+            "id": "spartanrace",
             "type": "gp",
-            "description": "This game is a fun way to learn about places. Questions will be asked realted to places and you need to answer them by identifying the place on the map"
+            "description": "This game is a fun way to learn about places. Questions will be asked related to places and you need to answer them by identifying the place on the map"
         }
     ]
 }

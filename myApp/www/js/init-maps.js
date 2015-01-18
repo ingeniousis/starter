@@ -63,6 +63,7 @@ function SetGlobalSettings(mapData) {
 
         //Advanced settings        
         auto_load: 'no',
+        images_directory: 'img/',
         fade_time: 0 //time to fade out	
     };
 

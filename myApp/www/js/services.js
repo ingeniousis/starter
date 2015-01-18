@@ -23,14 +23,16 @@ angular.module('starter.services', [])
                 return deferred.promise;
             },
 
-            GetPackData: function (areaId, packId) {
+            GetPackData: function (areaId, data) {
                 var deferred = $q.defer();
-                if (packData[packId] !== undefined) {
-                    deferred.resolve(packData[packId]);
+                var path = String.format('data/packs/{0}/{1}.json', areaId, data);
+
+                if (packData[path] !== undefined) {
+                    deferred.resolve(packData[path]);
                 } else {
-                    $http.get(String.format('data/packs/{0}/{1}.json', areaId, packId)).then(function (response) {
+                    $http.get(path).then(function (response) {
                             var packData = response.data;
-                            packData[packId] = packData;
+                            packData[path] = packData;
                             deferred.resolve(packData);
                         },
                         function (response) {

@@ -35,6 +35,11 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', ['$scope',
     function ($scope) {}])
 
+.controller('AreaCtrl', ['$scope', 'areaSetting',
+    function ($scope, areaSetting) {
+        $scope.areaName = areaSetting.name;
+    }])
+
 .controller('AreaHomeCtrl', ['$scope', '$stateParams', '$state', '$timeout', 'areaSetting',
     function ($scope, $stateParams, $state, $timeout, areaSetting) {
         $scope.id = $stateParams.areaId;
@@ -51,7 +56,20 @@ angular.module('starter.controllers', [])
                 packId: pack.id
             };
 
-            var state = pack.type == 'kp' ? 'app.area.kp' : 'app.area.gp';
+            var state;
+            switch (pack.type) {
+            case 'kp':
+                state = 'app.area.kp';
+                break;
+
+            case 'pp':
+                state = 'app.area.pp';
+                break;
+
+            case 'gp':
+                state = 'app.area.gp';
+                break;
+            }
 
             $timeout(function () {
                 $state.go(state, params);
@@ -112,8 +130,15 @@ angular.module('starter.controllers', [])
         };
 }])
 
-.controller('GamePackCtrl', ['$scope', '$stateParams', 'areaSetting', 'packSetting', 'packData',
-    function ($scope, $stateParams, areaSetting, packSetting, packData) {
+.controller('PracticePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
+        $scope.areaSetting = areaSetting;
+        $scope.packSetting = packSetting;
+        $scope.$parent.hideLoading();
+    }])
+
+.controller('GamePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
         $scope.areaSetting = areaSetting;
         $scope.packSetting = packSetting;
         $scope.$parent.hideLoading();
