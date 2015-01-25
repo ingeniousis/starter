@@ -128,13 +128,43 @@ angular.module('starter.controllers', [])
         map.hooks.back = function () {
             stateData.regionZoomed = undefined;
         };
+
+        map.hooks.zooming_complete = function () {
+            if (stateData.selectedStateId !== undefined) {
+                MapService.SelectState(stateData.selectedStateId, 200);
+            }
+        };
 }])
 
 .controller('PracticePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
     function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
-        $scope.areaSetting = areaSetting;
+        $scope.areaId = $stateParams.areaId;
         $scope.packSetting = packSetting;
-        $scope.$parent.hideLoading();
+        $scope.stateData = stateData;
+
+        var map = MapService.GetMap($scope.areaId);
+        var mapData = MapService.GetMapData($scope.areaId);
+
+        if (stateData.sectors === undefined) {
+            stateData.sectors = {};
+            stateData.sectionsLeft = 0;
+
+            for (var sectorId in packData) {
+                stateData.sectors[sectorId] = {
+                    attempted: false,
+                    attemptsLeft: 3
+                };
+
+                stateData.sectionsLeft++;
+            }
+
+            stateData.score = 123;
+            stateData.maxScore = stateData.sectionsLeft * 3;
+        }
+
+        map.hooks.complete = function () {
+            $scope.$parent.hideLoading();
+        };
     }])
 
 .controller('GamePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',

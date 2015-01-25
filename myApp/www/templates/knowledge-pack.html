@@ -1,9 +1,6 @@
 <ion-view title="{{packSetting.name}}">
     <ion-content>
-        <div class="row">
-            <div class="col col-90" data-tap-disabled="true">
-                <div maptype='usa' id="map" ng-if="areaId === 'usa'" style="width: 105%"></div>
-            </div>
+        <div class="row" ng-include="'templates/map.html'">
         </div>
 
         <div class="card" ng-hide="selectedRegionData !== undefined">

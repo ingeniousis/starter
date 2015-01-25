@@ -1,4 +1,35 @@
 <ion-view title="{{packSetting.name}}">
     <ion-content>
+        <div ng-include="'templates/map.html'">
+        </div>
+        <div class="card sectionLabelCard">
+            <div class="item calm regionLabel text-center">
+                START
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-33">
+                <div class="row">
+                    <div class="col">
+                        <div class="calm regionCountLeft">{{stateData.sectionsLeft}}</div>
+                        <div class="calm">STATES LEFT</div>
+                    </div>
+                    <div class="col">
+                        <div class="calm regionCountLeft">{{stateData.score}}</div>
+                        <div class="calm">SCORE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-33 text-center"></div>
+            <div class="col col-33 text-right">
+                <div class="row padding-top">
+                    <div class="col">
+                        <button class="button button-outline button-dark">Reset</button>
+                    </div>
+                    <div class="col col-33">
+                        <button class="button button-outline button-dark">Statistics</button>
+                    </div>
+                </div>
+            </div>
     </ion-content>
 </ion-view>

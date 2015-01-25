@@ -155,3 +155,10 @@ div#map_trial {
 .regionInfoLabel {
     font-size: 16px;
 }
+.regionCountLeft {
+    font-size: 48px;
+    line-height: normal;
+}
+.sectionLabelCard {
+    margin: 0px;
+}

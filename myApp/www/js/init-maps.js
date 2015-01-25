@@ -55,8 +55,7 @@ function SetGlobalSettings(mapData) {
         arrow_color_border: '#88A4BC',
         initial_back: 'no', //Show back button when zoomed out and do this JavaScript upon click		
         initial_zoom: '-1', //-1 is zoomed out, 0 is for the first continent etc	
-        initial_zoom_solo: 'no', //hide adjacent states when starting map zoomed in
-        zoom_time: '3',
+        initial_zoom_solo: 'no', //hide adjacent states when starting map zoomed in        
         region_opacity: 1,
         region_hover_opacity: .6,
         adjacent_opacity: 1,

@@ -89,11 +89,15 @@ angular.module('starter.services', [])
                 }
             },
 
-            SelectState: function (stateId) {
+            SelectState: function (stateId, delay) {
                 var className = 'sm_state_' + stateId;
+                if (delay === undefined) {
+                    delay = 100;
+                }
+
                 $timeout(function () {
                     document.getElementsByClassName(className)[0].setAttribute('fill', '#4c8585');
-                }, 100);
+                }, delay);
             },
 
             DeSelectState: function (stateId) {
