@@ -45,11 +45,11 @@ angular.module('starter.services', [])
         }
     }])
 
-.factory('AppData', function () {
-    var appData = {};
+.factory('AppStateService', function () {
+    var appStateData = {};
     return {
-        GetStateData: function (key) {
-            var stateData = appData[key];
+        GetData: function (key) {
+            var stateData = appStateData[key];
             if (stateData === undefined) {
                 return {};
             }
@@ -57,8 +57,8 @@ angular.module('starter.services', [])
             return stateData;
         },
 
-        PutStateData: function (key, data) {
-            appData[key] = data;
+        PutData: function (key, data) {
+            appStateData[key] = data;
         }
     }
 })
@@ -89,8 +89,29 @@ angular.module('starter.services', [])
                 }
             },
 
-            SelectState: function (stateId, delay) {
-                var className = 'sm_state_' + stateId;
+            MapType: {
+                Continent: 0,
+                Country: 1
+            },
+
+            GetMapType: function (areaId) {
+                switch (areaId) {
+                case 'usa':
+                    return this.MapType.Country;
+
+                default:
+                    return this.MapType.Continent;
+                }
+            },
+
+            SelectSector: function (mapType, sectorId, delay) {
+                var className;
+                if (mapType === this.MapType.Country) {
+                    className = 'sm_state_' + sectorId;
+                } else {
+                    className = 'sm_country_' + sectorId;
+                }
+
                 if (delay === undefined) {
                     delay = 100;
                 }
@@ -100,8 +121,14 @@ angular.module('starter.services', [])
                 }, delay);
             },
 
-            DeSelectState: function (stateId) {
-                var className = 'sm_state_' + stateId;
+            DeSelectSector: function (mapType, sectorId) {
+                var className;
+                if (mapType === this.MapType.Country) {
+                    className = 'sm_state_' + sectorId;
+                } else {
+                    className = 'sm_country_' + sectorId;
+                }
+
                 $timeout(function () {
                     document.getElementsByClassName(className)[0].setAttribute('fill', '#99b9b9');
                 }, 100);

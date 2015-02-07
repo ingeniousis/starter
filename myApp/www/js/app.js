@@ -28,7 +28,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
         $stateProvider
 
-        .state('app', {
+            .state('app', {
             url: "/app",
             abstract: true,
             templateUrl: "templates/sidemenu.html",
@@ -138,14 +138,14 @@ function GetResolveData() {
         packData: function ($stateParams, FileStorageService, packSetting) {
             return FileStorageService.GetPackData($stateParams.areaId, packSetting.data);
         },
-        stateData: function ($stateParams, AppData) {
+        appStateData: function ($stateParams, AppStateService) {
             var key = String.format('{0}:{1}:{2}', this.self.name, $stateParams.areaId, $stateParams.packId);
-            return AppData.GetStateData(key);
+            return AppStateService.GetData(key);
         }
     }
 }
 
-function OnStateExit($state, AppData, stateData) {
+function OnStateExit($state, AppStateService, appStateData) {
     var key = String.format('{0}:{1}:{2}', $state.current.name, $state.params.areaId, $state.params.packId);
-    AppData.PutStateData(key, stateData);
+    AppStateService.PutData(key, appStateData);
 }

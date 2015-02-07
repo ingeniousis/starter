@@ -77,8 +77,8 @@ angular.module('starter.controllers', [])
         };
 }])
 
-.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
-    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
+.controller('KnowledgePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'appStateData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, appStateData) {
 
         $scope.areaId = $stateParams.areaId;
         $scope.areaSetting = areaSetting;
@@ -86,80 +86,86 @@ angular.module('starter.controllers', [])
 
         var map = MapService.GetMap($scope.areaId);
         var mapData = MapService.GetMapData($scope.areaId);
+        var mapType = MapService.GetMapType($scope.areaId);
 
         map.hooks.click_state = function (id) {
             console.log('State clicked: ' + id);
-            if (stateData.selectedStateId !== undefined) {
-                MapService.DeSelectState(stateData.selectedStateId)
-            }
-
-            stateData.selectedStateId = id;
-            MapService.SelectState(stateData.selectedStateId)
-
-            $scope.selectedRegionData = packData[id];
-            $scope.$apply();
+            clickSector(id);
         };
 
         map.hooks.complete = function () {
             $scope.$parent.hideLoading();
 
-            if (stateData.selectedStateId !== undefined) {
-                MapService.SelectState(stateData.selectedStateId);
-                $scope.selectedRegionData = packData[stateData.selectedStateId];
+            if (appStateData.selectedSectorId !== undefined) {
+                MapService.SelectSector(mapType, appStateData.selectedSectorId);
+                $scope.selectedSectorData = packData[appStateData.selectedSectorId];
             }
 
-            if (stateData.regionZoomed !== undefined) {
-                map.region_zoom(stateData.regionZoomed);
+            if (appStateData.regionZoomed !== undefined) {
+                map.region_zoom(appStateData.regionZoomed);
             }
         };
 
         map.hooks.zoomable_click_region = function (id) {
-            stateData.regionZoomed = id;
+            appStateData.regionZoomed = id;
 
-            if (stateData.selectedStateId !== undefined) {
-                MapService.DeSelectState(stateData.selectedStateId);
-                stateData.selectedStateId = undefined;
+            if (appStateData.selectedSectorId !== undefined) {
+                MapService.DeSelectSector(mapType, appStateData.selectedSectorId);
+                appStateData.selectedSectorId = undefined;
             }
 
-            $scope.selectedRegionData = undefined;
+            $scope.selectedSectorData = undefined;
             $scope.$apply();
         };
 
         map.hooks.back = function () {
-            stateData.regionZoomed = undefined;
+            appStateData.regionZoomed = undefined;
         };
 
         map.hooks.zooming_complete = function () {
-            if (stateData.selectedStateId !== undefined) {
-                MapService.SelectState(stateData.selectedStateId, 200);
+            if (appStateData.selectedSectorId !== undefined) {
+                MapService.SelectSector(mapType, appStateData.selectedSectorId, 200);
             }
         };
+
+        function clickSector(id) {
+            if (appStateData.selectedSectorId !== undefined) {
+                MapService.DeSelectSector(mapType, appStateData.selectedSectorId)
+            }
+
+            appStateData.selectedSectorId = id;
+            MapService.SelectSector(mapType, appStateData.selectedSectorId)
+
+            $scope.selectedSectorData = packData[id];
+            $scope.$apply();
+        }
 }])
 
-.controller('PracticePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
-    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
+.controller('PracticePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'appStateData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, appStateData) {
         $scope.areaId = $stateParams.areaId;
         $scope.packSetting = packSetting;
-        $scope.stateData = stateData;
+        $scope.appStateData = appStateData;
 
         var map = MapService.GetMap($scope.areaId);
         var mapData = MapService.GetMapData($scope.areaId);
+        var mapType = MapService.GetMapType($scope.areaId);
 
-        if (stateData.sectors === undefined) {
-            stateData.sectors = {};
-            stateData.sectionsLeft = 0;
+        if (appStateData.sectors === undefined) {
+            appStateData.sectors = {};
+            appStateData.sectorsLeft = 0;
 
             for (var sectorId in packData) {
-                stateData.sectors[sectorId] = {
+                appStateData.sectors[sectorId] = {
                     attempted: false,
                     attemptsLeft: 3
                 };
 
-                stateData.sectionsLeft++;
+                appStateData.sectorsLeft++;
             }
 
-            stateData.score = 123;
-            stateData.maxScore = stateData.sectionsLeft * 3;
+            appStateData.score = 123;
+            appStateData.maxScore = appStateData.sectorsLeft * 3;
         }
 
         map.hooks.complete = function () {
@@ -167,8 +173,8 @@ angular.module('starter.controllers', [])
         };
     }])
 
-.controller('GamePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'stateData',
-    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, stateData) {
+.controller('GamePackCtrl', ['$scope', '$stateParams', '$timeout', 'MapService', 'areaSetting', 'packSetting', 'packData', 'appStateData',
+    function ($scope, $stateParams, $timeout, MapService, areaSetting, packSetting, packData, appStateData) {
         $scope.areaSetting = areaSetting;
         $scope.packSetting = packSetting;
         $scope.$parent.hideLoading();
