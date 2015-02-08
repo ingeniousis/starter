@@ -7,6 +7,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 [class^="icon-"],
 [class*=" icon-"] {
     font-family: 'icomoon';
@@ -17,114 +18,151 @@
     text-transform: none;
     line-height: 1;
     /* Better Font Rendering =========== */
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 .icon-africa-icon:before {
     content: "\e601";
 }
+
 .icon-america-icon:before {
     content: "\e602";
 }
+
 .icon-Asia-icon:before {
     content: "\e603";
 }
+
 .icon-canada-icon:before {
     content: "\e604";
 }
+
 .icon-europe-icon:before {
     content: "\e605";
 }
+
 .icon-south-america-icon:before {
     content: "\e606";
 }
+
 .icon-home:before {
     content: "\e607";
 }
+
 .icon-home2:before {
     content: "\e608";
 }
+
 .icon-book:before {
     content: "\e609";
 }
+
 .icon-books:before {
     content: "\e60a";
 }
+
 .icon-library:before {
     content: "\e60b";
 }
+
 .icon-profile:before {
     content: "\e60c";
 }
+
 .icon-paste:before {
     content: "\e60d";
 }
+
 .icon-cart:before {
     content: "\e60e";
 }
+
 .icon-coin:before {
     content: "\e60f";
 }
+
 .icon-credit:before {
     content: "\e610";
 }
+
 .icon-download:before {
     content: "\e611";
 }
+
 .icon-undo:before {
     content: "\e612";
 }
+
 .icon-redo:before {
     content: "\e613";
 }
+
 .icon-user:before {
     content: "\e614";
 }
+
 .icon-lock:before {
     content: "\e615";
 }
+
 .icon-cog:before {
     content: "\e616";
 }
+
 .icon-stats:before {
     content: "\e617";
 }
+
 .icon-bars:before {
     content: "\e618";
 }
+
 .icon-trophy:before {
     content: "\e619";
 }
+
 .icon-lab:before {
     content: "\e61a";
 }
+
 .icon-lightning:before {
     content: "\e61b";
 }
+
 .icon-flag:before {
     content: "\e61c";
 }
+
 .icon-bookmark:before {
     content: "\e61d";
 }
+
 .icon-bookmarks:before {
     content: "\e61e";
 }
+
 .icon-arrow-left:before {
     content: "\e61f";
 }
+
 .icon-arrow-left2:before {
     content: "\e620";
 }
+
 .icon-1x {
     font-size: 16px;
 }
+
 .icon-2x {
     font-size: 32px;
 }
+
 .icon-3x {
     font-size: 48px;
 }
+
 .icon-4x {
     font-size: 64px;
 }
@@ -133,32 +171,41 @@
 div.list {
     padding-top: 0px;
 }
+
 .summary.item {
     padding: 0px;
 }
+
 .selected {
     background-color: #f8f8f8;
 }
+
 .menu-selected {
     background-color: #66a3a3;
     color: #fff;
 }
+
 div#map_trial {
     display: none;
 }
-.regionLabel {
+
+.sectorLabel {
     font-size: 32px;
 }
-.regionCapitalLabel {
+
+.sectorCapitalLabel {
     font-size: 20px;
 }
-.regionInfoLabel {
+
+.sectorInfoLabel {
     font-size: 16px;
 }
-.regionCountLeft {
-    font-size: 48px;
+
+.sectorCountLeft {
+    font-size: 40px;
     line-height: normal;
 }
-.sectionLabelCard {
+
+.sectorLabelCard {
     margin: 0px;
 }

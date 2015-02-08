@@ -31,9 +31,9 @@ angular.module('starter.services', [])
                     deferred.resolve(packData[path]);
                 } else {
                     $http.get(path).then(function (response) {
-                            var packData = response.data;
-                            packData[path] = packData;
-                            deferred.resolve(packData);
+                            var data = response.data;
+                            packData[path] = data;
+                            deferred.resolve(data);
                         },
                         function (response) {
                             deferred.resolve({});

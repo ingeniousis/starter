@@ -12,24 +12,24 @@
         <div class="row" ng-hide="selectedSectorData === undefined">
             <div class="col col-33 padding-left">
                 <div class="calm">STATE</div>
-                <div class="calm regionLabel">{{selectedSectorData.Name.toUpperCase()}}</div>
+                <div class="calm sectorLabel">{{selectedSectorData.Name.toUpperCase()}}</div>
                 <div class="assertive padding-top">CAPITAL</div>
-                <div class="assertive regionCapitalLabel">{{selectedSectorData.Capital.toUpperCase()}}</div>
+                <div class="assertive sectorCapitalLabel">{{selectedSectorData.Capital.toUpperCase()}}</div>
             </div>
             <div class="col col-33 dark">
                 <div>
                     <div>NICKNAMES</div>
-                    <div ng-repeat="name in selectedSectorData.Nicknames" class="regionInfoLabel"><b>{{name}}</b>
+                    <div ng-repeat="name in selectedSectorData.Nicknames" class="sectorInfoLabel"><b>{{name}}</b>
                     </div>
                 </div>
             </div>
             <div class="col col-33 dark">
                 <div>
                     <div>STATEHOOD</div>
-                    <div class="regionInfoLabel"><b>{{selectedSectorData.Statehood}}</b>
+                    <div class="sectorInfoLabel"><b>{{selectedSectorData.Statehood}}</b>
                     </div>
                     <div class="padding-top">MOTTO</div>
-                    <div class="regionInfoLabel"><b>{{selectedSectorData.Motto}}</b>
+                    <div class="sectorInfoLabel"><b>{{selectedSectorData.Motto}}</b>
                     </div>
                 </div>
             </div>

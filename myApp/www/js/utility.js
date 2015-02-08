@@ -28,6 +28,19 @@ if (!Array.prototype.unique) {
     };
 }
 
+if (!Array.prototype.shuffle) {
+    Array.prototype.shuffle = function () {
+        var array = this;
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    };
+}
+
 if (!Array.prototype.last) {
     Array.prototype.last = function () {
         return this[this.length - 1];
