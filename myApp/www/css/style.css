@@ -209,3 +209,7 @@ div#map_trial {
 .sectorLabelCard {
     margin: 0px;
 }
+
+.sectorLabelItem {
+    height: 59px;
+}
